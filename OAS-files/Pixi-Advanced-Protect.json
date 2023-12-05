@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.3",
     "info": {
-        "title": "Pixi App Protect",
+        "title": "Pixi Advanced Protect",
         "description": "Pixi Photo app without picture upload definded",
         "contact": {
             "email": "nicole.becher@owasp.org"
