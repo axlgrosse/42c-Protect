@@ -47,14 +47,14 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: 42Crunch REST API Static Security Testing
-        uses: 42Crunch/api-security-audit-action@f3a4f4d44ca6f538fe84361373d7a2a374018fdd
+        uses: 42Crunch/api-security-audit-action@fc01ea7a89e6268875868f9d89598af7a9899ae0
         with:
           # Please create free account at https://platform.42crunch.com/register
           # Follow these steps to configure API_TOKEN https://docs.42crunch.com/latest/content/tasks/integrate_github_actions.htm
           
           # platform specific data
           platform-url: https://demolabs.42crunch.cloud
-          api-token: ${{ secrets.DEMOLABS_42C }}
+          api-token: ${{ secrets.ACTION_42C }}
           # Fail if any OpenAPI file scores lower than 70
           min-score: 70
           upload-to-code-scanning: true

@@ -1,0 +1,8 @@
+audit:
+  branches:
+    main: 
+      discovery:
+        search:
+          - OAS-Files/*.json
+          - OAS-Files/*.yaml
+          
