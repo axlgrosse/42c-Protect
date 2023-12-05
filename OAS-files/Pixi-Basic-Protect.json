@@ -128,14 +128,6 @@
                                           "hsts.max_age": 15400,
                                           "csp.policy": "default-src: 'self'; upgrade-insecure-requests; block-all-mixed-content"
                                       }
-                                  },
-                                  {
-                                      "x-42c-request-limiter_0.1": {
-                                      "hits": 3,
-                                      "window": 6,
-                                      "add.retry_after": true,
-                                      "key": "token"
-                                      }
                                   }
                                 ]
                             }
@@ -166,13 +158,6 @@
                 "x-42c-local-strategy": {
                     "x-42c-strategy": {
                         "protections": [
-                            {
-                                "x-42c-set-client-ip_0.1": {
-                                    "ip.header.name": "X-Forwarded-For",
-                                    "ip.header.mandatory": true,
-                                    "remote.ip.allowlist": []
-                                }
-                            },
                             {
                                 "x-42c-request-limiter_0.1": {
                                     "hits": 3,
