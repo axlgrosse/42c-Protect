@@ -3,6 +3,6 @@ audit:
     main: 
       discovery:
         search:
-          - OAS-Files/*.json
-          - OAS-Files/*.yaml
+          - OAS-files/*.json
+          - OAS-files/*.yaml
           
