@@ -16,8 +16,8 @@ services:
       - LISTEN_SSL_CERT=full-cert-chain.pem
       - LISTEN_SSL_KEY=key.pem
       - SERVER_NAME=pixi-secured.42crunch.test:4241
-      - GUARDIAN_NODE_NAME=Local-Firewall
-      - GUARDIAN_INSTANCE_NAME=Local-Firewall
+      - GUARDIAN_NODE_NAME=Firewall-On-Mac
+      - GUARDIAN_INSTANCE_NAME=Demo-Firewall
       - LOG_LEVEL=DEBUG
       - LOG_DESTINATION=PLATFORM
       - BACKEND_TLS_CHECK_PEER_NAME=off

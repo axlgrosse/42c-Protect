@@ -1,0 +1,15 @@
+                "security": [],
+                "x-42c-local-strategy": {
+                    "x-42c-strategy": {
+                        "protections": [
+                            {
+                                "x-42c-request-limiter_0.1": {
+                                    "hits": 5,
+                                    "window": 10,
+                                    "add.retry_after": true,
+                                    "key": "req_limiter_login"
+                                }
+                            }
+                        ]
+                    }
+                }

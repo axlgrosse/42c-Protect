@@ -1,0 +1,1 @@
+PROTECTION_TOKEN=dcd54dc0-d868-4d0f-9714-ce5602e74375 docker-compose -p 42crunch -f protect-only.yml up pixi-secured.42crunch.test

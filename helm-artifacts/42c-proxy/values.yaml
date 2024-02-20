@@ -1,0 +1,38 @@
+# Default values for 42c-proxy release.
+
+image:
+  repository: 42crunch/apifirewall
+  # replace with named version in production
+  version: latest
+  pullPolicy: Always
+
+apifirewall:
+  log_level: warn
+  # Using this domain + release name as server name
+  server_name: ec2-3-71-18-34.eu-central-1.compute.amazonaws.com
+  # Transaction logs can be shipped to the PLATFORM or kept in FILES
+  log_destination: PLATFORM
+  # The port API Firewall pod listens on - Default is 8443
+  pod_listen_port: 8443
+  # The port API Firewall service listens on - Default is 443
+  svc_listen_port: 443
+  # Pass the value of Host unchanged
+  preserve_host: 'Off'
+  # Time to wait for incoming traffic (secs)
+  client_timeout: 60
+  # Time before a connection to back-end is recycled
+  keep_alive_timeout: 60
+  # URL for back-end API
+  backend_api_url: http://localhost:8090
+  #The name of the cert API firewall used for TLS configuration (PEM format)
+  firewall_tls_cert: tls.crt
+  # The name of the private key API firewall used for TLS configuration (PEM format)
+  firewall_tls_key: tls.key
+  # Load Balancer Type
+  loadBalancerType: LoadBalancer
+  # External Traffic Policy - Using local so that original client IP shows up in logs.
+  trafficPolicy: Local
+  # existing external IP
+  svc_externalIP: 3.71.18.34
+  # FW token
+  protection_token: 80a4aa19-3bee-4bc3-be8d-7da248790a2e

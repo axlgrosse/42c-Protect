@@ -1,0 +1,97 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple  API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /:
+    get:
+      summary: any get request
+      operationId: anyGetRequest
+      description: |
+        all get requests
+      parameters:
+        - in: query
+          name: anyParameter
+          description: pass an optional string
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/output'
+    post:
+      summary: any Post request
+      operationId: anyPostRequest
+      description: |
+        all post requests
+      parameters:
+        - in: query
+          name: anyParameter
+          description: pass an optional string
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              items:
+                $ref: '#/components/schemas/input'
+      responses:
+        '200':
+          description: results 
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/output'
+    put:
+      summary: any Put request
+      operationId: anyPutRequest
+      description: |
+        all put requests
+      parameters:
+        - in: query
+          name: anyParameter
+          description: pass an optional string
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              items:
+                $ref: '#/components/schemas/input'
+      responses:
+        '200':
+          description: results 
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/output'
+
+components:
+  schemas:
+    input:
+      type: string
+    output:
+      type: string
