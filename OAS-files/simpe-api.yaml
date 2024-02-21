@@ -30,8 +30,7 @@ paths:
             application/json:
               schema:
                 type: object
-                items:
-                  $ref: '#/components/schemas/output'
+                $ref: '#/components/schemas/output'
     post:
       summary: any Post request
       operationId: anyPostRequest
@@ -49,8 +48,7 @@ paths:
           application/json:
             schema:
               type: object
-              items:
-                $ref: '#/components/schemas/input'
+              $ref: '#/components/schemas/input'
       responses:
         '200':
           description: results 
@@ -58,8 +56,7 @@ paths:
             application/json:
               schema:
                 type: object
-                items:
-                  $ref: '#/components/schemas/output'
+                $ref: '#/components/schemas/output'
     put:
       summary: any Put request
       operationId: anyPutRequest
@@ -77,8 +74,7 @@ paths:
           application/json:
             schema:
               type: object
-              items:
-                $ref: '#/components/schemas/input'
+              $ref: '#/components/schemas/input'
       responses:
         '200':
           description: results 
@@ -86,9 +82,7 @@ paths:
             application/json:
               schema:
                 type: object
-                items:
-                  $ref: '#/components/schemas/output'
-
+                $ref: '#/components/schemas/output'
 components:
   schemas:
     input:

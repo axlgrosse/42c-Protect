@@ -17,8 +17,9 @@ services:
       - LISTEN_SSL_KEY=key.pem
       - SERVER_NAME=pixi-secured.42crunch.test:4241
       - GUARDIAN_NODE_NAME=Firewall-On-Mac
-      - GUARDIAN_INSTANCE_NAME=Demo-Firewall
+      - GUARDIAN_INSTANCE_NAME=SimpleAPI-Demo
       - LOG_LEVEL=DEBUG
-      - LOG_DESTINATION=PLATFORM
+      - LOG_DESTINATION=FILES
       - BACKEND_TLS_CHECK_PEER_NAME=off
       - BACKEND_TLS_CHECK_PEER_EXPIRE=off
+      - TRANSACTION_LOG_CONTENT=request.body:8092,response.body:8092

@@ -1,1 +1,4 @@
+Simple API
+PROTECTION_TOKEN=9ee1a1ad-36a8-4a96-8565-177316f9b4b6 docker-compose -p 42crunch -f protect-only.yml up pixi-secured.42crunch.test
+
 PROTECTION_TOKEN=dcd54dc0-d868-4d0f-9714-ce5602e74375 docker-compose -p 42crunch -f protect-only.yml up pixi-secured.42crunch.test
