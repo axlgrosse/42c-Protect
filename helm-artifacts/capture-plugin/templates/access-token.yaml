@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-access-token
+  labels:
+{{ include "horus.labels" . | indent 4 }}
+type: Opaque
+data:
+  ACCESS_TOKEN: {{ .Values.config.accessToken | b64enc | quote }}

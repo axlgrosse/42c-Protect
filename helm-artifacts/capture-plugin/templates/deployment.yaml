@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "horus.fullname" . }}
+  labels:
+    {{- include "horus.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "horus.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "horus.selectorLabels" . | nindent 8 }}
+      
+    spec:  
+      serviceAccountName: {{ include "horus.serviceAccountName" . }}
+      containers:
+      - name: horus-logging
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: LOG_LEVEL
+          value: DEBUG
+        - name: HORUS_API
+          value: {{ .Values.config.targetServer | quote }}
+        - name: BUCKET_ID
+          value: {{ .Values.config.bucketId }}
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-access-token
+              key: ACCESS_TOKEN 
+        - name: DIRECTORY_WATCHER
+          value: /opt/guardian/logs/*/api-8b6c7fe2-2151-45ee-a448-0b5e9c505f76.transaction.log
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: firewall-logs
+          mountPath: /opt/guardian/logs
+          readOnly: true
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        target: apis
+      volumes:
+      - name: "firewall-logs"
+        persistentVolumeClaim:
+          claimName: apifirewall-logs
