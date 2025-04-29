@@ -1,0 +1,20 @@
+[Tue Feb 20 13:22:04.480765 2024] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Tue Feb 20 13:22:04.483942 2024] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Feb 20 13:22:05.023368 2024] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Feb 20 13:22:05.024036 2024] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Feb 20 13:24:37.474329 2024] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Tue Feb 20 13:24:37.483190 2024] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Feb 20 13:24:37.485146 2024] [guardian:notice] [19:140737488350024] Engine is in blocking level 1
+[Tue Feb 20 13:24:37.485223 2024] [guardian:notice] [19:140737488350024] API 3bb72c9b-e45e-4b86-af95-e2ebf10063ec is in blocking level 1
+[Tue Feb 20 13:24:37.486540 2024] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Feb 20 13:24:37.486602 2024] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Feb 20 18:02:52.794152 2024] [mpm_event:notice] [19:140737488350024] AH00492: caught SIGWINCH, shutting down gracefully
+[Tue Feb 20 18:27:21.085572 2024] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Tue Feb 20 18:56:09.009335 2024] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Wed Feb 21 08:30:53.900126 2024] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Wed Feb 21 08:30:53.903683 2024] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Feb 21 08:30:53.907454 2024] [guardian:notice] [19:140737488350024] Engine is in blocking level 1
+[Wed Feb 21 08:30:53.907582 2024] [guardian:notice] [19:140737488350024] API 3bb72c9b-e45e-4b86-af95-e2ebf10063ec is in blocking level 1
+[Wed Feb 21 08:30:54.446398 2024] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Wed Feb 21 08:30:54.447176 2024] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Wed Feb 21 11:17:28.692804 2024] [mpm_event:notice] [19:140737488350024] AH00492: caught SIGWINCH, shutting down gracefully

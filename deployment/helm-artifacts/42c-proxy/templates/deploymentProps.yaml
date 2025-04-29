@@ -14,3 +14,6 @@ data:
   TIMEOUT_KEEPALIVE: {{ .Values.apifirewall.keep_alive_timeout | quote }}
   PRESERVE_HOST: {{ .Values.apifirewall.preserve_host | default "Off" | quote }}
   TARGET_URL: {{ .Values.apifirewall.backend_api_url | quote }}
+  {{ if eq .Values.apifirewall.http_only "enabled" }}LISTEN_NO_TLS: "ENABLED"{{ end }}  
+  {{ if eq .Values.apifirewall.dump_body "enabled" }}TRANSACTION_LOG_CONTENT: "request.body:8092,response.body:8092"{{ end }}  
+  

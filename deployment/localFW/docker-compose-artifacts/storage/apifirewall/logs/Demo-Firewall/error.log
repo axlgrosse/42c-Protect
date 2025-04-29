@@ -1,0 +1,38 @@
+[Thu Dec 21 16:03:51.040429 2023] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Thu Dec 21 16:03:51.044398 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Thu Dec 21 16:03:51.049013 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Thu Dec 21 16:03:51.049281 2023] [guardian:notice] [19:140737488350024] API 5fdb4bc0-c9d0-4601-8807-687630133f1c is in blocking level 0
+[Thu Dec 21 16:03:51.618082 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Thu Dec 21 16:03:51.619037 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Thu Dec 21 16:58:43.559640 2023] [mpm_event:notice] [19:140737488350024] AH00492: caught SIGWINCH, shutting down gracefully
+[Thu Dec 21 17:15:50.651681 2023] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Thu Dec 21 17:15:50.655452 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Thu Dec 21 17:15:50.661032 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Thu Dec 21 17:15:50.661380 2023] [guardian:notice] [19:140737488350024] API 5fdb4bc0-c9d0-4601-8807-687630133f1c is in blocking level 0
+[Thu Dec 21 17:15:51.220996 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Thu Dec 21 17:15:51.221687 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Thu Dec 21 17:20:48.661646 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Thu Dec 21 17:20:48.673823 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Thu Dec 21 17:20:48.678753 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 3
+[Thu Dec 21 17:20:48.678856 2023] [guardian:notice] [19:140737488350024] API 5fdb4bc0-c9d0-4601-8807-687630133f1c is in blocking level 3
+[Thu Dec 21 17:20:48.690531 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Thu Dec 21 17:20:48.690755 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Thu Dec 21 17:21:00.151495 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Thu Dec 21 17:21:00.155422 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Thu Dec 21 17:21:00.158526 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Thu Dec 21 17:21:00.158647 2023] [guardian:notice] [19:140737488350024] API 5fdb4bc0-c9d0-4601-8807-687630133f1c is in blocking level 0
+[Thu Dec 21 17:21:00.170247 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Thu Dec 21 17:21:00.170444 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Thu Dec 21 17:21:15.271577 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Thu Dec 21 17:21:15.277743 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Thu Dec 21 17:21:15.280917 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 3
+[Thu Dec 21 17:21:15.281042 2023] [guardian:notice] [19:140737488350024] API 5fdb4bc0-c9d0-4601-8807-687630133f1c is in blocking level 3
+[Thu Dec 21 17:21:15.294490 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Thu Dec 21 17:21:15.294656 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Thu Dec 21 17:23:16.491005 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Thu Dec 21 17:23:16.500802 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Thu Dec 21 17:23:16.507056 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 3
+[Thu Dec 21 17:23:16.507177 2023] [guardian:notice] [19:140737488350024] API 5fdb4bc0-c9d0-4601-8807-687630133f1c is in blocking level 3
+[Thu Dec 21 17:23:16.518535 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Thu Dec 21 17:23:16.518838 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Thu Dec 21 17:27:45.320671 2023] [mpm_event:notice] [19:140737488350024] AH00492: caught SIGWINCH, shutting down gracefully

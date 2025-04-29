@@ -1,0 +1,39 @@
+[Tue Dec 05 08:13:27.068519 2023] [guardian:notice] [19:140737488350024] Guardian (build v1.0.25:4ff4137566318e4cd62ccc78d4f013f3e26aaf84:20231010110939)
+[Tue Dec 05 08:13:27.071463 2023] [proxy:info] [pid 19:tid 140737488350024] mod_proxy.c(2190): AH01145: Sharing worker 'http://arbahi.al-dawaa.com' instead of creating new worker 'http://arbahi.al-dawaa.com/'
+[Tue Dec 05 08:13:27.072467 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Dec 05 08:13:27.622718 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Dec 05 08:13:27.623675 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Dec 05 08:14:30.885465 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Tue Dec 05 08:14:30.891857 2023] [proxy:info] [pid 19:tid 140737488350024] mod_proxy.c(2190): AH01145: Sharing worker 'http://arbahi.al-dawaa.com' instead of creating new worker 'http://arbahi.al-dawaa.com/'
+[Tue Dec 05 08:14:30.893226 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Dec 05 08:14:30.896674 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Tue Dec 05 08:14:30.896839 2023] [guardian:notice] [19:140737488350024] API bc8fa348-89dc-4b1e-9c8f-1b81b725b328 is in blocking level 0
+[Tue Dec 05 08:14:30.900575 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Dec 05 08:14:30.900694 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Dec 05 08:29:52.473962 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Tue Dec 05 08:29:52.480145 2023] [proxy:info] [pid 19:tid 140737488350024] mod_proxy.c(2190): AH01145: Sharing worker 'http://arbahi.al-dawaa.com' instead of creating new worker 'http://arbahi.al-dawaa.com/'
+[Tue Dec 05 08:29:52.481857 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Dec 05 08:29:52.486497 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Tue Dec 05 08:29:52.486681 2023] [guardian:notice] [19:140737488350024] API bc8fa348-89dc-4b1e-9c8f-1b81b725b328 is in blocking level 0
+[Tue Dec 05 08:29:52.500646 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Dec 05 08:29:52.500803 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Dec 05 08:30:54.347697 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Tue Dec 05 08:30:54.354405 2023] [proxy:info] [pid 19:tid 140737488350024] mod_proxy.c(2190): AH01145: Sharing worker 'http://arbahi.al-dawaa.com' instead of creating new worker 'http://arbahi.al-dawaa.com/'
+[Tue Dec 05 08:30:54.355907 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Dec 05 08:30:54.363727 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Dec 05 08:30:54.363875 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Dec 05 08:32:05.596362 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Tue Dec 05 08:32:05.602523 2023] [proxy:info] [pid 19:tid 140737488350024] mod_proxy.c(2190): AH01145: Sharing worker 'http://arbahi.al-dawaa.com' instead of creating new worker 'http://arbahi.al-dawaa.com/'
+[Tue Dec 05 08:32:05.604551 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Dec 05 08:32:05.608971 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Tue Dec 05 08:32:05.609172 2023] [guardian:notice] [19:140737488350024] API bc8fa348-89dc-4b1e-9c8f-1b81b725b328 is in blocking level 0
+[Tue Dec 05 08:32:05.614177 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Dec 05 08:32:05.614366 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Dec 05 08:50:57.137762 2023] [mpm_event:notice] [19:140737488350024] AH00493: SIGUSR1 received.  Doing graceful restart
+[Tue Dec 05 08:50:57.143369 2023] [proxy:info] [pid 19:tid 140737488350024] mod_proxy.c(2190): AH01145: Sharing worker 'http://arbahi.al-dawaa.com' instead of creating new worker 'http://arbahi.al-dawaa.com/'
+[Tue Dec 05 08:50:57.145178 2023] [ssl:warn] [19:140737488350024] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Dec 05 08:50:57.163641 2023] [guardian:notice] [19:140737488350024] Engine is in blocking level 0
+[Tue Dec 05 08:50:57.163760 2023] [guardian:notice] [19:140737488350024] API bc8fa348-89dc-4b1e-9c8f-1b81b725b328 is in blocking level 0
+[Tue Dec 05 08:50:57.168269 2023] [mpm_event:notice] [19:140737488350024] AH00489: Apache/2.4.57 (Unix) OpenSSL/1.1.1w mod_apreq2-20101207/2.8.1 configured -- resuming normal operations
+[Tue Dec 05 08:50:57.168406 2023] [core:notice] [19:140737488350024] AH00094: Command line: '/opt/guardian/bin/guardian -f /opt/guardian/conf/guardian.conf -D FOREGROUND'
+[Tue Dec 05 09:32:06.374369 2023] [mpm_event:notice] [19:140737488350024] AH00492: caught SIGWINCH, shutting down gracefully

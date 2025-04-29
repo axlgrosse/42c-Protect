@@ -1,0 +1,926 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+      "title": "Pixi Basic Protect",
+      "description": "Pixi Photo app without picture upload definded",
+      "contact": {
+          "email": "nicole.becher@owasp.org"
+      },
+      "license": {
+          "name": "Apache 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "4.8.0"
+  },
+  "servers": [
+      {
+          "url": "https://photo-demo.westeurope.cloudapp.azure.com/axl/api"
+      }
+  ],
+  "tags": [
+      {
+          "name": "admins",
+          "description": "Secured Admin-only calls"
+      },
+      {
+          "name": "users",
+          "description": "Operations available to regular, logged in users"
+      },
+      {
+          "name": "anyone",
+          "description": "Operations available to anyone"
+      },
+      {
+          "name": "pictures",
+          "description": "operations related to picture management"
+      }
+  ],
+  "paths": {
+      "/user/login": {
+          "post": {
+              "tags": [
+                  "anyone"
+              ],
+              "summary": "user/password based login",
+              "description": "user supplies user name and password and receives a json web token",
+              "operationId": "authenticate",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "additionalProperties": false,
+                              "required": [
+                                  "pass",
+                                  "user"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                  "user": {
+                                    "type": "string",
+                                    "format": "email"
+                                  },
+                                  "pass": {
+                                    "type": "string",
+                                    "format": "password"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "required": true
+              },
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "required": [
+                                      "message",
+                                      "token"
+                                  ],
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "properties": {
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "token": {
+                                          "nullable": true,
+                                          "type": "string"
+                                      },
+                                      "_id": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "422": {
+                      "description": "missing parameters",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "security": []
+          }
+      },
+      "/user/register": {
+          "post": {
+              "tags": [
+                  "anyone"
+              ],
+              "summary": "register for an account",
+              "description": "user supplies email and password to register and receives a json web token.",
+              "operationId": "register",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/UserRegistrationData"
+                          }
+                      }
+                  },
+                  "required": true
+              },
+              "responses": {
+                  "200": {
+                      "description": "successfully registered, token received",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "properties": {
+                                      "message": {
+                                          "type": "string"
+                                      },
+                                      "token": {
+                                          "type": "string"
+                                      },
+                                      "_id": {
+                                        "type": "string",
+                                        "nullable": true
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "202": {
+                      "description": "email address already registered",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "security": []
+          }
+      },
+      "/user/info": {
+          "get": {
+              "tags": [
+                  "users"
+              ],
+              "summary": "get user information",
+              "description": "user supplies valid token and receives all user info",
+              "operationId": "userinfo",
+              "responses": {
+                  "200": {
+                      "description": "successful authentication sent user information",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/UsersItem"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "invalid or missing token",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ]
+          }
+      },
+      "/user/edit_info": {
+          "put": {
+              "tags": [
+                  "users"
+              ],
+              "summary": "edit user information",
+              "description": "user supplies valid token and updates all user info",
+              "operationId": "edituserinfo",
+              "parameters": [
+                  {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "requestBody": {
+                  "description": "userobject",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "$ref": "#/components/schemas/UserUpdateData"
+                          }
+                      }
+                  },
+                  "required": true
+              },
+              "responses": {
+                  "200": {
+                      "description": "successful authentication sent user information",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "invalid or missing token",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ]
+          }
+      },
+      "/admin/users/search": {
+          "get": {
+              "tags": [
+                  "admins"
+              ],
+              "summary": "search for a specific user",
+              "description": "search for a specific user",
+              "operationId": "userSearch",
+              "parameters": [
+                  {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                  },
+                  {
+                      "name": "search",
+                      "in": "query",
+                      "description": "search query ?search=xxx",
+                      "required": true,
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "successful authentication user photo json object",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/UsersItem"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "invalid or missing token",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ]
+          }
+      },
+      "/admin/all_users": {
+          "get": {
+              "tags": [
+                  "admins"
+              ],
+              "summary": "Returns the list of ALL users. Must be admin to call.",
+              "description": "Returns the list of ALL users. Must be admin to call.",
+              "operationId": "adminallusers",
+              "parameters": [
+                  {
+                      "name": "x-access-token",
+                      "in": "header",
+                      "required": true,
+                      "schema": {
+                          "type": "string"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "List Users",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/UsersListItem"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "No token provided or invalid token.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ]
+          }
+      },
+      "/admin/user/{userid}": {
+          "delete": {
+              "parameters": [
+                  {
+                      "schema": {
+                          "type": "string"
+                      },
+                      "name": "userid",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "summary": "Delete User",
+              "tags": [
+                  "users",
+                  "admins"
+              ],
+              "description": "Delete a user identified by unique ID",
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "properties": {
+                                      "message": {
+                                          "type": "string"
+                                      }
+                                  },
+                                  "x-examples": {
+                                      "example-1": {
+                                          "message": "success"
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "Forbidden",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  }
+              },
+              "operationId": "deleteUser",
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ]
+          }
+      },
+      "/user/pictures": {
+          "get": {
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ],
+              "summary": "Return user's pictures",
+              "tags": [
+                  "users",
+                  "pictures"
+              ],
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/PicturesList"
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "invalid or missing token",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "operationId": "listUserPictures",
+              "description": "List all pictures created by the user"
+          }
+      },
+      "/picture/{id}": {
+          "delete": {
+              "parameters": [
+                  {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "name": "id",
+                      "in": "path",
+                      "required": true
+                  }
+              ],
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ],
+              "summary": "Delete user picture",
+              "description": "Delete picture via its unique ID",
+              "tags": [
+                  "pictures"
+              ],
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "properties": {
+                                      "message": {
+                                          "type": "string"
+                                        }
+                                  },
+                                  "required": [
+                                      "message"
+                                  ]
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "Forbidden",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  }
+              },
+              "operationId": "deletePicture"
+          }
+      },
+      "/picture/file_upload": {
+          "post": {
+              "tags": [
+                  "pictures"
+              ],
+              "description": "Upload image file as user picture",
+              "summary": "Attach picture to user account",
+              "operationId": "uploadPictureFromFile",
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ConfirmationMessage"
+                              }
+                          }
+                      }
+                  },
+                  "403": {
+                      "description": "invalid or missing token",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/AuthenticationError"
+                              }
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "unexpected error",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                          }
+                      }
+                  }
+              },
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                  "filename": {
+                                      "type": "string"
+                                    },
+                                  "title": {
+                                      "type": "string"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "description": "File to upload"
+              },
+              "security": [
+                  {
+                      "access-token": []
+                  }
+              ]
+          }
+      }
+  },
+  "components": {
+      "schemas": {
+          "ErrorMessage": {
+              "required": [
+                  "message"
+              ],
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                  "message": {
+                      "type": "string"
+                  }
+              }
+          },
+          "UsersItem": {
+              "required": [
+                  "email",
+                  "password",
+                  "name",
+                  "_id",
+                  "is_admin",
+                  "account_balance",
+                  "onboarding_date"
+              ],
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                  "_id": {
+                      "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                    },
+                  "password": {
+                      "type": "string"
+                  },
+                  "name": {
+                      "type": "string",
+                      "example": "Johnny Appleseed"
+                  },
+                  "is_admin": {
+                      "type": "boolean",
+                      "description": "is admin"
+                  },
+                  "account_balance": {
+                      "type": "number",
+                      "description": "remaining balance",
+                      "format": "float"
+                  },
+                  "onboarding_date": {
+                    "type": "string",
+                    "format": "date-time"
+                    }
+              }
+          },
+          "UsersListItem": {
+              "required": [
+                  "email",
+                  "name"
+              ],
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                  "_id": {
+                      "type": "string"
+                  },
+                  "pic": {
+                      "type": "string",
+                      "format": "uri"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "name": {
+                      "type": "string",
+                      "example": "Johnny Appleseed"
+                  },
+                  "account_balance": {
+                      "type": "number",
+                      "description": "remaining balance",
+                      "format": "float"
+                  }
+              }
+          },
+          "UserUpdateData": {
+              "required": [
+                  "email",
+                  "name"
+              ],
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                    },
+                  "name": {
+                      "type": "string"
+                  },
+                  "account_balance": {
+                      "type": "number",
+                      "format": "float"
+                  }
+              }
+          },
+          "UserRegistrationData": {
+              "required": [
+                  "account_balance",
+                  "is_admin",
+                  "name",
+                  "pass",
+                  "user"
+              ],
+              "type": "object",
+              "example": {
+                  "user": "foo@test.com",
+                  "pass": "mygood2!pass",
+                  "name": "PixiUser",
+                  "is_admin": false,
+                  "account_balance": 150
+              },
+              "properties": {
+                  "user": {
+                    "type": "string",
+                    "format": "email"
+                    },
+                  "pass": {
+                      "type": "string"
+                  },
+                  "name": {
+                      "type": "string"
+                  },
+                  "is_admin": {
+                      "type": "boolean"
+                  },
+                  "account_balance": {
+                      "type": "number",
+                      "format": "float"
+                  }
+              }
+          },
+          "ConfirmationMessage": {
+              "type": "object",
+              "x-examples": {
+                  "Example 1": {
+                      "message": "photo has been attached",
+                      "_id": "438c0afa-e06a-4853-8636-b6acc0c52486"
+                  }
+              },
+              "properties": {
+                  "message": {
+                      "type": "string"
+                  },
+                  "_id": {
+                    "type": "string"
+                    }
+              }
+          },
+          "PicturesList": {
+              "type": "array",
+              "x-examples": {
+                  "Example 1": [
+                      {
+                          "_id": "7ef9b6cb-ddd1-494f-89a0-04da62f18b47",
+                          "title": "Pensive Parakeet.jpg",
+                          "image_url": "uploads/91c0cf406c53af7f96b57561b5f526f9",
+                          "name": "automobile remove",
+                          "filename": "91c0cf406c53af7f96b57561b5f526f9",
+                          "description": "Oldie but goodie! a plastic and a lotion brimful hovercraft #TBT",
+                          "creator_id": "267c6dec-9d8f-4874-9eba-daa060e6324b",
+                          "money_made": 0,
+                          "likes": 0,
+                          "created_date": "2023-02-01T16:21:15.088Z"
+                      }
+                  ]
+              },
+              "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                      "_id": {
+                        "type": "string"
+                        },
+                      "title": {
+                          "type": "string"
+                        },
+                      "image_url": {
+                          "type": "string"
+                        },
+                      "name": {
+                          "type": "string"
+                        },
+                      "filename": {
+                          "type": "string"
+                        },
+                      "description": {
+                          "type": "string"
+                        },
+                      "creator_id": {
+                        "type": "string"
+                    },
+                      "money_made": {
+                          "type": "integer"
+                      },
+                      "likes": {
+                          "type": "integer"
+                      },
+                      "created_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2021-08-30T23:01:14.274085491+15:55"
+                      }
+                  },
+                  "required": [
+                      "_id",
+                      "title",
+                      "filename",
+                      "creator_id",
+                      "created_date"
+                  ]
+              },
+              "description": "Pictures owned by a user"
+          },
+          "AuthenticationError": {
+              "type": "object",
+              "additionalProperties": false,
+              "x-examples": {
+                  "Example 1": {
+                      "success": false,
+                      "message": "Failed to authenticate token"
+                  }
+              },
+              "properties": {
+                  "success": {
+                      "type": "boolean"
+                  },
+                  "message": {
+                      "type": "string"
+                  }
+              },
+              "required": [
+                  "success",
+                  "message"
+              ],
+              "description": "403 response"
+          }
+      },
+      "securitySchemes": {
+          "access-token": {
+              "type": "apiKey",
+              "description": "Most operations need to pass a user token retrieved calling /api/login",
+              "name": "x-access-token",
+              "in": "header"
+          }
+      },
+      "responses": {}
+  }
+}

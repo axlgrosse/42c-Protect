@@ -27,7 +27,7 @@
 # changes to trigger audit
 
 
-name: "42Crunch REST API Static Security Testing"
+name: "42Crunch OpenAPI Contract Security Testing"
 
 # follow standard Code Scanning triggers
 on:
@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: 42Crunch REST API Static Security Testing
+      - name: 42Crunch OAS Security Testing
         uses: 42Crunch/api-security-audit-action@fc01ea7a89e6268875868f9d89598af7a9899ae0
         with:
           # Please create free account at https://platform.42crunch.com/register
