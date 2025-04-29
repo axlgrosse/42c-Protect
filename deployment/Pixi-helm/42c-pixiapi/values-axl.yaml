@@ -1,0 +1,28 @@
+# Default values for 42c-pixiapi.
+# Declare variables to be passed into your templates.
+
+deployment:
+  namespace: axl2
+  prefix: axl2
+  hostname: photo-demo.westeurope.cloudapp.azure.com
+  azure cloud: photo-demo.westeurope.cloudapp.azure.com
+
+pixiapp:
+  repository: heshaam/pixi
+  version: v4.8
+  pullPolicy: IfNotPresent #Always
+  pod_listen_port: 8090
+  svc_listen_port: 8090
+  replicas: 1
+  inject_firewall: false
+  service_type: NodePort
+
+pixidb:
+  repository: 42crunch/pixi
+  version: datastore
+  pullPolicy: Always
+  listen_port: 27017
+
+firewall:
+  target_url: http://localhost:8090
+  server_name: photo-demo.westeurope.cloudapp.azure.com
