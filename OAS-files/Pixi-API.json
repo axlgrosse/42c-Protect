@@ -10,7 +10,7 @@
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "version": "4.8.2"
+        "version": "4.8.3"
     },
     "servers": [
         {
@@ -35,7 +35,6 @@
             "description": "operations related to picture management"
         }
     ],
-    "x-42c-accept-empty-security": true,
     "paths": {
         "/user/login": {
             "post": {
