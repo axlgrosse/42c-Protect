@@ -1,0 +1,301 @@
+overlay: 1.0.0
+info:
+  title: oas-patch generated overlay
+  version: 1.0.0
+actions:
+  - target: $.info
+    update:
+      version: 4.8.5-fw
+  - target: $
+    update:
+      x-42c-components:
+        x-42c-schemas:
+          jose-header:
+            type: object
+            properties:
+              alg:
+                type: string
+                enum:
+                  - RS384
+              typ:
+                type: string
+                enum:
+                  - JWT
+            required:
+              - alg
+              - typ
+            additionalProperties: false
+          jwt-claims:
+            type: object
+            properties:
+              iat:
+                type: number
+              exp:
+                type: number
+              sub:
+                type: string
+                pattern: ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
+                maxLength: 128
+                minLength: 8
+              aud:
+                type: string
+                enum:
+                  - pixi.42crunch.com
+                  - pixiUsers
+              iss:
+                type: string
+                enum:
+                  - https://42c-demo
+                  - https://42crunch.com
+                  - https://issuer.42crunch.demo
+              user_profile:
+                $ref: '#/components/schemas/UsersItem'
+              cid:
+                type: string
+                pattern: ^[a-zA-Z0-9]+$
+                maxLength: 50
+              jti:
+                type: string
+                pattern: ^[a-zA-Z0-9\-_]+$
+                maxLength: 50
+            required:
+              - iat
+              - user_profile
+              - iss
+              - aud
+              - sub
+              - exp
+            additionalProperties: false
+  - target: $.paths['/user/login'].post
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-request-limiter_0.1:
+                hits: 3
+                window: 20
+                add.retry_after: true
+                key: req_limiter_login
+  - target: $.paths['/user/login'].post.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/user/register'].post
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-request-limiter_0.1:
+                hits: 3
+                window: 20
+                add.retry_after: true
+                key: req_limiter_register
+  - target: $.paths['/user/register'].post.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/user/info'].get
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_get_info
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/user/info'].get.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/user/edit_info'].put.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/admin/users/search'].get
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_get_info
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/admin/users/search'].get.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/admin/all_users'].get
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_all_users
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/admin/user/{userid}'].delete
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_get_info
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/user/pictures'].get
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_get_info
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/user/pictures'].get.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/picture/{id}'].delete
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_get_info
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/picture/{id}'].delete.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content
+  - target: $.paths['/picture/file_upload'].post
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-set-client-ip_0.1:
+                ip.header.name: X-Forwarded-For
+                ip.header.mandatory: true
+                remote.ip.allowlist: []
+            - x-42c-request-limiter_0.1:
+                hits: 5
+                window: 10
+                add.retry_after: true
+                key: req_limiter_get_info
+            - x-42c-jwt-validation-rsa_0.2:
+                header.name: x-access-token
+                lifetime: 600
+                jp.jose.header.schema: '#/x-42c-components/x-42c-schemas/jose-header'
+                jp.claims.schema: '#/x-42c-components/x-42c-schemas/jwt-claims'
+  - target: $.paths['/picture/file_upload'].post.responses['200']
+    update:
+      x-42c-local-strategy:
+        x-42c-strategy:
+          protections:
+            - x-42c-security-headers_0.1:
+                hsts.max_age: 15400
+                csp.policy: >-
+                  default-src: 'self'; upgrade-insecure-requests;
+                  block-all-mixed-content

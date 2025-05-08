@@ -10,11 +10,11 @@
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "version": "4.8.2"
+        "version": "4.8.0"
     },
     "servers": [
         {
-            "url": "https://photo-demo.westeurope.cloudapp.azure.com/api"
+            "url": "https://photo-demo.westeurope.cloudapp.azure.com/axl/api"
         }
     ],
     "tags": [
@@ -35,7 +35,6 @@
             "description": "operations related to picture management"
         }
     ],
-    "x-42c-accept-empty-security": true,
     "paths": {
         "/user/login": {
             "post": {
@@ -58,19 +57,11 @@
                                 "properties": {
                                     "user": {
                                       "type": "string",
-                                      "format": "email",
-                                      "example": "foo@bar.com",
-                                      "pattern": "^[\\w\\-+.]+@((\\w\\-?)+\\.){1,4}[a-zA-Z0-9]{2,63}$",
-                                      "minLength": 5,
-                                      "maxLength": 68
+                                      "format": "email"
                                     },
                                     "pass": {
                                       "type": "string",
-                                      "format": "o:common:password",
-                                      "example": "C3a@52Yp",
-                                      "pattern": "^[a-zA-Z0-9&@#!?]{8,64}$",
-                                      "minLength": 8,
-                                      "maxLength": 64
+                                      "format": "password"
                                     }
                                 }
                             }
@@ -92,25 +83,15 @@
                                     "additionalProperties": false,
                                     "properties": {
                                         "message": {
-                                            "maxLength": 255,
-                                            "minLength": 1,
-                                            "pattern": "^[\\w\\s\\.\\-@:,;]{1,255}$",
                                             "type": "string"
                                         },
                                         "token": {
-                                            "maxLength": 1000,
                                             "nullable": true,
-                                            "pattern": "^([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_\\-\\+\\/=]{4,})",
                                             "type": "string"
                                         },
                                         "_id": {
                                           "type": "string",
-                                          "nullable": true,
-                                          "format": "uuid",
-                                          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                                          "minLength": 36,
-                                          "maxLength": 36,
-                                          "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e"
+                                          "nullable": true
                                         }
                                     }
                                 }
@@ -169,25 +150,14 @@
                                     "additionalProperties": false,
                                     "properties": {
                                         "message": {
-                                            "maxLength": 255,
-                                            "minLength": 1,
-                                            "pattern": "^[\\w\\s\\.\\-@:,;]{1,255}$",
                                             "type": "string"
                                         },
                                         "token": {
-                                            "maxLength": 1000,
-                                            "nullable": true,
-                                            "pattern": "^([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_\\-\\+\\/=]{4,})",
                                             "type": "string"
                                         },
                                         "_id": {
                                           "type": "string",
-                                          "nullable": true,
-                                          "format": "uuid",
-                                          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                                          "minLength": 36,
-                                          "maxLength": 36,
-                                          "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e"
+                                          "nullable": true
                                         }
                                     }
                                 }
@@ -232,8 +202,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "maxItems": 1,
-                                    "minItems": 1,
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/UsersItem"
@@ -284,8 +252,6 @@
                         "in": "header",
                         "required": true,
                         "schema": {
-                            "maxLength": 1000,
-                            "pattern": "^([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_\\-\\+\\/=]{4,})",
                             "type": "string"
                         }
                     }
@@ -354,12 +320,7 @@
                         "in": "header",
                         "required": true,
                         "schema": {
-                          "maxLength": 1000,
-                          "pattern": "^([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_\\-\\+\\/=]{4,})",
-                          "type": "string",
-                          "format": "JWT",
-                          "minLength": 25,
-                          "example": ""
+                          "type": "string"
                         }
                     },
                     {
@@ -368,8 +329,6 @@
                         "description": "search query ?search=xxx",
                         "required": true,
                         "schema": {
-                            "maxLength": 100,
-                            "pattern": "^[\\w\\s\\.@=]{1,100}$",
                             "type": "string"
                         }
                     }
@@ -380,8 +339,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "maxItems": 50,
-                                    "minItems": 0,
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/UsersItem"
@@ -432,8 +389,6 @@
                         "in": "header",
                         "required": true,
                         "schema": {
-                            "maxLength": 1000,
-                            "pattern": "^([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_=]{4,})\\.([a-zA-Z0-9_\\-\\+\\/=]{4,})",
                             "type": "string"
                         }
                     }
@@ -444,8 +399,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "maxItems": 10,
-                                    "minItems": 1,
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/UsersListItem"
@@ -487,12 +440,7 @@
                 "parameters": [
                     {
                         "schema": {
-                            "type": "string",
-                            "format": "uuid",
-                            "example": "DD68C630-3CCB-4FD0-9C5B-A0A34C952681",
-                            "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                            "minLength": 36,
-                            "maxLength": 36
+                            "type": "string"
                         },
                         "name": "userid",
                         "in": "path",
@@ -515,10 +463,7 @@
                                     "additionalProperties": false,
                                     "properties": {
                                         "message": {
-                                          "maxLength": 255,
-                                          "minLength": 1,
-                                          "pattern": "^[\\w\\s\\.\\-@:,;]{1,255}$",
-                                          "type": "string"
+                                            "type": "string"
                                         }
                                     },
                                     "x-examples": {
@@ -539,17 +484,7 @@
                                 }
                             }
                         }
-                    },
-                    "default": {
-                      "description": "unexpected error",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/ErrorMessage"
-                              }
-                          }
-                      }
-                  }
+                    }
                 },
                 "operationId": "deleteUser",
                 "security": [
@@ -612,12 +547,7 @@
                 "parameters": [
                     {
                         "schema": {
-                          "type": "string",
-                          "format": "uuid",
-                          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                          "minLength": 36,
-                          "maxLength": 36,
-                          "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e"
+                          "type": "string"
                         },
                         "name": "id",
                         "in": "path",
@@ -641,19 +571,10 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "x-examples": {
-                                        "Example 1": {
-                                            "message": "success"
-                                        }
-                                    },
-                                    "additionalProperties": false,
                                     "properties": {
                                         "message": {
-                                          "maxLength": 255,
-                                          "minLength": 1,
-                                          "pattern": "^[\\w\\s\\.\\-@:,;]{1,255}$",
-                                          "type": "string"
-                                        }
+                                            "type": "string"
+                                          }
                                     },
                                     "required": [
                                         "message"
@@ -671,17 +592,7 @@
                                 }
                             }
                         }
-                    },
-                    "default": {
-                      "description": "unexpected error",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/ErrorMessage"
-                              }
-                          }
-                      }
-                  }
+                    }
                 },
                 "operationId": "deletePicture"
             }
@@ -734,18 +645,10 @@
                                 "additionalProperties": false,
                                 "properties": {
                                     "filename": {
-                                        "type": "string",
-                                        "format": "o:standard:uri",
-                                        "example": "https://42crunch.com",
-                                        "pattern": "[(http(s)?)://(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_//+.~#?&//=]*)",
-                                        "minLength": 0,
-                                        "maxLength": 256,
-                                        "default": "https://42crunch.com"
-                                    },
+                                        "type": "string"
+                                      },
                                     "title": {
-                                        "type": "string",
-                                        "pattern": "^[a-zA-Z0-9\\s]*$",
-                                        "maxLength": 100
+                                        "type": "string"
                                     }
                                 }
                             }
@@ -771,9 +674,6 @@
                 "additionalProperties": false,
                 "properties": {
                     "message": {
-                        "maxLength": 255,
-                        "minLength": 1,
-                        "pattern": "^[\\w\\s\\.\\-@:,;]{1,255}$",
                         "type": "string"
                     }
                 }
@@ -792,33 +692,16 @@
                 "additionalProperties": false,
                 "properties": {
                     "_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "DD68C630-3CCB-4FD0-9C5B-A0A34C952681",
-                        "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                        "minLength": 36,
-                        "maxLength": 36
+                        "type": "string"
                     },
                     "email": {
-                      "maxLength": 68,
-                      "minLength": 5,
-                      "pattern": "^[\\w\\-+.]+@((\\w\\-?)+\\.){1,4}[a-zA-Z0-9]{2,63}$",
                       "type": "string",
-                      "format": "email",
-                      "example": "email@email.com"
-                    },
+                      "format": "email"
+                      },
                     "password": {
-                        "maxLength": 64,
-                        "minLength": 8,
-                        "pattern": "^[\\w&@#!?]{8,64}$",
-                        "type": "string",
-                        "format": "string",
-                        "example": "p@ssword1"
+                        "type": "string"
                     },
                     "name": {
-                        "maxLength": 50,
-                        "minLength": 5,
-                        "pattern": "(^[\\w\\s\\.]{5,50}$)",
                         "type": "string",
                         "example": "Johnny Appleseed"
                     },
@@ -827,20 +710,14 @@
                         "description": "is admin"
                     },
                     "account_balance": {
-                        "maximum": 1000,
-                        "minimum": -50,
                         "type": "number",
                         "description": "remaining balance",
                         "format": "float"
                     },
                     "onboarding_date": {
                       "type": "string",
-                      "maxLength": 38,
-                      "format": "date-time",
-                      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:(?:[0-5][0-9]|60)(?:\\.[0-9]{1,15})?(?:Z|[+\\-](?:[01][0-9]|2[0-3]):[0-5][0-9])$",
-                      "example": "2021-08-30T23:01:14.274085491+15:55",
-                      "minLength": 20
-                    }
+                      "format": "date-time"
+                      }
                 }
             },
             "UsersListItem": {
@@ -852,38 +729,21 @@
                 "additionalProperties": false,
                 "properties": {
                     "_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "DD68C630-3CCB-4FD0-9C5B-A0A34C952681",
-                        "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                        "minLength": 36,
-                        "maxLength": 36
+                        "type": "string"
                     },
                     "pic": {
-                        "maxLength": 2000,
-                        "minLength": 0,
-                        "pattern": "^(?:(?:[A-Za-z][A-Za-z0-9\\-+.]*):(?:(?://(?:(?:(?:(?:[A-Za-z0-9](?:[\\w\\-]{0,61}[A-Za-z0-9])?)(?:\\.(?:[A-Za-z0-9](?:[\\w\\-]{0,61}[A-Za-z0-9])?))*\\.[A-Za-z]{2,})|\\[[0-9A-Fa-f:]{3,48}\\])(?::[1-9][0-9]{0,4})?)(?:/(?:[\\w\\-.~!$&'()*+,;=%@:]+(?:/[\\w\\-.~!$&'()*+,;=%@:]*)*)?)?|(?:/(?:[\\w\\-.~!$&'()*+,;=%@:]+(?:/[\\w\\-.~!$&'()*+,;=%@:]*)*)?)|(?:[\\w\\-.~!$&'()*+,;=%@:]+(?:/[\\w\\-.~!$&'()*+,;=%@:]*)*))?(?:\\?[\\w\\-.~!$&'()*+,;=%@:/\\?]*)?(?:#[\\w\\-.~!$&'()*+,;=%@:/\\?]*)?)?)$",
                         "type": "string",
                         "format": "uri"
                     },
                     "email": {
-                      "maxLength": 68,
-                      "minLength": 5,
-                      "pattern": "^[\\w\\-+.]+@((\\w\\-?)+\\.){1,4}[a-zA-Z0-9]{2,63}$",
                       "type": "string",
-                      "format": "email",
-                      "example": "email@email.com"
+                      "format": "email"
                     },
                     "name": {
-                        "maxLength": 50,
-                        "minLength": 5,
-                        "pattern": "(^[\\w\\s\\.]{5,50}$)",
                         "type": "string",
                         "example": "Johnny Appleseed"
                     },
                     "account_balance": {
-                        "maximum": 1000,
-                        "minimum": -50,
                         "type": "number",
                         "description": "remaining balance",
                         "format": "float"
@@ -899,22 +759,13 @@
                 "additionalProperties": false,
                 "properties": {
                     "email": {
-                      "maxLength": 68,
-                      "minLength": 5,
-                      "pattern": "^[\\w\\-+.]+@((\\w\\-?)+\\.){1,4}[a-zA-Z0-9]{2,63}$",
                       "type": "string",
-                      "format": "email",
-                      "example": "foo@bar.com"
-                    },
+                      "format": "email"
+                      },
                     "name": {
-                        "maxLength": 30,
-                        "minLength": 5,
-                        "pattern": "^[\\w\\s\\.]{5,30}$",
                         "type": "string"
                     },
                     "account_balance": {
-                        "maximum": 1000,
-                        "minimum": 0,
                         "type": "number",
                         "format": "float"
                     }
@@ -929,7 +780,6 @@
                     "user"
                 ],
                 "type": "object",
-                "additionalProperties": false,
                 "example": {
                     "user": "foo@test.com",
                     "pass": "mygood2!pass",
@@ -939,31 +789,19 @@
                 },
                 "properties": {
                     "user": {
-                      "maxLength": 68,
-                      "minLength": 5,
-                      "pattern": "^[\\w\\-+.]+@((\\w\\-?)+\\.){1,4}[a-zA-Z0-9]{2,63}$",
                       "type": "string",
-                      "format": "email",
-                      "example": "foo@bar.com"
-                    },
+                      "format": "email"
+                      },
                     "pass": {
-                        "maxLength": 64,
-                        "minLength": 8,
-                        "pattern": "^[\\w&@#!?]{8,64}$",
                         "type": "string"
                     },
                     "name": {
-                        "maxLength": 30,
-                        "minLength": 5,
-                        "pattern": "^[\\w\\s\\.]{5,30}$",
                         "type": "string"
                     },
                     "is_admin": {
                         "type": "boolean"
                     },
                     "account_balance": {
-                        "maximum": 1000,
-                        "minimum": 0,
                         "type": "number",
                         "format": "float"
                     }
@@ -971,7 +809,6 @@
             },
             "ConfirmationMessage": {
                 "type": "object",
-                "additionalProperties": false,
                 "x-examples": {
                     "Example 1": {
                         "message": "photo has been attached",
@@ -980,19 +817,11 @@
                 },
                 "properties": {
                     "message": {
-                        "type": "string",
-                        "maxLength": 50,
-                        "pattern": "^[\\w\\s\\.]{0,50}$",
-                        "minLength": 0
+                        "type": "string"
                     },
                     "_id": {
-                      "type": "string",
-                      "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                      "minLength": 36,
-                      "maxLength": 36,
-                      "format": "uuid",
-                      "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e"
-                    }
+                      "type": "string"
+                      }
                 }
             },
             "PicturesList": {
@@ -1013,58 +842,31 @@
                         }
                     ]
                 },
-                "minItems": 0,
-                "maxItems": 100,
                 "items": {
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
                         "_id": {
-                          "type": "string",
-                          "format": "uuid",
-                          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                          "minLength": 36,
-                          "maxLength": 36,
-                          "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e"
-                        },
+                          "type": "string"
+                          },
                         "title": {
-                            "type": "string",
-                            "maxLength": 100,
-                            "minLength": 1,
-                            "pattern": "^[\\w\\s\\.]{1,100}$"
-                        },
+                            "type": "string"
+                          },
                         "image_url": {
-                            "type": "string",
-                            "maxLength": 254,
-                            "minLength": 1,
-                            "pattern": "^[\\w\\s\\.]{1,254}$"
-                        },
+                            "type": "string"
+                          },
                         "name": {
-                            "type": "string",
-                            "maxLength": 100,
-                            "minLength": 1,
-                            "pattern": "^[\\w\\s\\.]{1,100}$"
-                        },
+                            "type": "string"
+                          },
                         "filename": {
-                            "type": "string",
-                            "maxLength": 100,
-                            "minLength": 1,
-                            "pattern": "^[\\w\\s\\.]{1,100}$"
-                        },
+                            "type": "string"
+                          },
                         "description": {
-                            "type": "string",
-                            "maxLength": 254,
-                            "minLength": 1,
-                            "pattern": "^[\\w\\s\\.]{1,254}$"
-                        },
+                            "type": "string"
+                          },
                         "creator_id": {
-                          "type": "string",
-                          "format": "uuid",
-                          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                          "minLength": 36,
-                          "maxLength": 36,
-                          "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e"
-                        },
+                          "type": "string"
+                      },
                         "money_made": {
                             "type": "integer"
                         },
@@ -1074,10 +876,7 @@
                         "created_date": {
                           "type": "string",
                           "format": "date-time",
-                          "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:(?:[0-5][0-9]|60)(?:\\.[0-9]{1,15})?(?:Z|[+\\-](?:[01][0-9]|2[0-3]):[0-5][0-9])$",
-                          "maxLength": 38,
-                          "example": "2021-08-30T23:01:14.274085491+15:55",
-                          "minLength": 20
+                          "example": "2021-08-30T23:01:14.274085491+15:55"
                         }
                     },
                     "required": [
@@ -1104,9 +903,6 @@
                         "type": "boolean"
                     },
                     "message": {
-                        "maxLength": 255,
-                        "minLength": 1,
-                        "pattern": "^[\\w\\s\\.\\-@:,;]{1,255}$",
                         "type": "string"
                     }
                 },
@@ -1123,11 +919,6 @@
                 "description": "Most operations need to pass a user token retrieved calling /api/login",
                 "name": "x-access-token",
                 "in": "header"
-            },
-            "b-sec": {
-              "type": "http",
-              "scheme": "bearer",
-              "bearerFormat": "JWT"
             }
         },
         "responses": {}

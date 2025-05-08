@@ -1,3 +1,5 @@
 apis:
   OAS-files/Pixi-Advanced.json:
     alias: pixi-app-protect
+  OAS-files/Pixi-API.json:
+    alias: pixi-app

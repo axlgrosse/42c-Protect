@@ -52,10 +52,10 @@ RUNTIME_NS=axl2
 ```
 
 ## get your protection FW token from the platform
-Token 3b45b7e3-dee2-4324-9268-b680c0d803c6
+Token 5cf517c0-9df4-4dec-9e84-85b73e53c3bb
 
 # upgrade/install helm script for firewall properties 
-helm upgrade firewall-props --dry-run --install --debug ./42c-firewall --namespace axl2 --set-string apifirewall.protection_token=3b45b7e3-dee2-4324-9268-b680c0d803c6
+helm upgrade firewall-props --dry-run --install --debug ./42c-firewall --namespace axl2 --set-string apifirewall.protection_token=5cf517c0-9df4-4dec-9e84-85b73e53c3bb
 
 
 # add firewall as sidecar to pod
